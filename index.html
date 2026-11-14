@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Championnat de l’avent</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Spectral:ital@0;1&display=swap">
+<style>
+:root{--bg:#eceef0;--ink:#1d2430;--muted:#5b6574;--card:#fff;--line:#c9ced6;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171c25;--ink:#f1f3f6;--muted:#9aa4b4;--card:#222a37;--line:#364052;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171c25;--ink:#f1f3f6;--muted:#9aa4b4;--card:#222a37;--line:#364052;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Spectral",Georgia,serif;line-height:1.6}
+main{max-width:760px;margin:0 auto;padding:28px 16px 48px}
+h1{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:clamp(2.6rem,10vw,4.6rem);line-height:.95;margin:0 0 8px;letter-spacing:.02em}
+.sub{color:var(--muted);margin:0 0 28px;max-width:46ch}
+.bar{height:10px;background:linear-gradient(90deg,var(--line),var(--muted),var(--line));border-radius:6px;margin-bottom:26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:14px}
+.plate{--c:#c8102e;aspect-ratio:1;border-radius:50%;border:0;cursor:pointer;position:relative;background:radial-gradient(circle at 50% 50%,var(--bg) 0 11%,transparent 11.5%),radial-gradient(circle,var(--c) 0 62%,rgba(0,0,0,.28) 63% 66%,var(--c) 67%);color:#fff;font-family:"Bebas Neue",Impact,sans-serif;font-size:1.9rem;display:grid;place-items:center;padding:0;box-shadow:inset 0 0 0 4px rgba(255,255,255,.18)}
+.plate span{transform:translateY(-34%) ;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.plate small{position:absolute;bottom:17%;font-family:"Spectral",serif;font-size:.62rem;letter-spacing:.04em}
+.plate:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.plate.done{filter:saturate(.35) brightness(.9)}
+.plate[aria-disabled="true"]{filter:grayscale(1) brightness(.75);cursor:not-allowed}
+.c1{--c:#c8102e}.c2{--c:#1556b8}.c3{--c:#e0a800;color:#1d2430}.c4{--c:#1f8a4c}.c5{--c:#8a93a1}
+dialog{border:0;border-radius:14px;padding:0;background:var(--card);color:var(--ink);width:min(440px,92vw);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+dialog::backdrop{background:rgba(10,13,18,.7)}
+.box{padding:28px 26px 22px}
+.box .n{font-family:"Bebas Neue",Impact,sans-serif;font-size:1rem;color:var(--muted);margin:0}
+.box h2{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:2.3rem;margin:0 0 14px;line-height:1}
+.box p.poem{font-size:1.15rem;font-style:italic;white-space:pre-line;margin:0 0 20px}
+.box button{font:inherit;background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:9px 18px;cursor:pointer}
+.box button:focus-visible{outline:3px solid var(--muted);outline-offset:2px}
+.note{color:var(--muted);font-size:.9rem;margin-top:26px}
+@media (prefers-reduced-motion:no-preference){dialog[open]{animation:up .25s ease-out}@keyframes up{from{transform:translateY(14px);opacity:0}}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800&display=swap">
+<style>
+:root{--bg:#eef1f6;--ink:#0b1633;--muted:#4a5775;--card:#fff;--line:#c5cde0;--hot:#e4002b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1126;--ink:#f3f5fa;--muted:#93a0bf;--card:#141d3a;--line:#2a3659}}
+:root[data-theme="dark"]{--bg:#0a1126;--ink:#f3f5fa;--muted:#93a0bf;--card:#141d3a;--line:#2a3659}
+h1,.plate,.box h2,.box .n,.score b{font-family:"Barlow Condensed","Bebas Neue",Impact,sans-serif;font-style:italic;font-weight:800}
+.hero{background:#0b1633;color:#fff;margin:-28px -16px 0;padding:36px 20px 52px;clip-path:polygon(0 0,100% 0,100% 86%,0 100%);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-24px;top:0;bottom:0;width:84px;background:var(--hot);transform:skewX(-20deg)}
+.hero h1{text-transform:uppercase;position:relative;z-index:1;margin:0 0 10px;line-height:.92}
+.hero .sub{color:rgba(255,255,255,.82);margin:0;position:relative;z-index:1;max-width:36ch}
+.score{display:flex;gap:12px;margin:-18px 0 26px;position:relative;z-index:2}
+.score div{flex:1;background:var(--card);border-left:6px solid var(--hot);padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.score b{font-size:2.4rem;line-height:1;margin-right:6px}
+.score span{color:var(--muted);font-size:.9rem}
+.plate{font-size:2.2rem;box-shadow:inset 0 0 0 5px rgba(255,255,255,.25),0 6px 0 rgba(0,0,0,.25)}
+@media (hover:hover){.plate:not([aria-disabled="true"]):hover{transform:scale(1.06)}}
+.plate{transition:transform .15s}
+dialog{border-top:6px solid var(--hot)}
+.box h2{font-size:2.6rem;text-transform:uppercase}
+.box button{background:var(--hot);color:#fff;font-weight:600}
+</style>
+</head>
+<body>
+<main>
+<header class="hero"><h1>Championnat<br>de l’avent</h1><p class="sub">Une charge par jour, du 1er au 27 décembre. Chaque disque cache une surprise.</p></header>
+<div class="score"><div><b id="cnt">0</b><span>/ 27 séries validées</span></div><div><b id="kg">0</b><span>kg soulevés</span></div></div>
+<div class="grid" id="grid"></div>
+<p class="note">Chaque disque ne s’ouvre que le jour qui lui correspond.</p>
+</main>
+<dialog id="dlg" aria-labelledby="t"><div class="box"><p class="n" id="n"></p><h2 id="t"></h2><p class="poem" id="p"></p><button id="close">Fermer</button></div></dialog>
+<script>
+var P=[
+["L’échauffement","Avant la grosse charge, on chauffe doucement,\nAvant les grands discours, j’y vais tendrement.\nVingt-sept cases à ouvrir, une par jour,\nPour monter jusqu’à nous deux, charge d’amour."],
+["La barre à vide","Vingt kilos à vide, et pourtant je la sens :\nLa barre, c’est la base, le premier engagement.\nToi, tu étais ma base dès le premier jour,\nRien de plus solide que ce simple amour."],
+["Le squat","Descendre bien bas, sans jamais trembler,\nPour mieux remonter, plus fort, plus léger.\nAvec toi, même les jours où tout pèse,\nJe remonte toujours, et je me sens à l’aise."],
+["La magnésie","Un nuage de craie sur mes mains,\nPour ne pas lâcher, jamais, en chemin.\nToi, tu es ma prise, mon point d’accroche,\nLe seul qui tient quand le reste décroche."],
+["L’arraché","Tout en un seul geste, du sol jusqu’en haut,\nSans trembler, sans douter, en un mouvement beau.\nNotre histoire a eu cette même évidence :\nUn regard, et le monde a changé de cadence."],
+["L’épaulé-jeté","Deux temps pour monter, un pour tout lancer,\nEt la barre là-haut, les bras tendus, ancrés.\nMa vie à tes côtés a ce même élan :\nOn s’élève ensemble, de plus en plus grand."],
+["Le soulevé de terre","Du dos, du souffle et du cœur pour partir du sol ;\nRien de plus lourd, rien de plus vrai, rien de plus fol.\nMais le plus facile de tous mes mouvements,\nC’est de te choisir, encore, simplement."],
+["Les disques","Rouge, bleu, jaune, vert : les couleurs s’ajoutent,\nChaque disque une fête, chaque disque une route.\nNos deux ans, c’est ça : des couleurs en plus,\nEt la barre qui chante sous tout ce qu’on a vécu."],
+["Le collier de serrage","Il tient les disques en place, sans bruit ;\nToi, tu tiens mes journées, tu tiens mes nuits.\nOn ne le remarque pas, mais sans lui tout glisse :\nMerci d’être mon point d’appui, ma complice."],
+["Le plateau","Parfois on stagne, la barre ne monte plus ;\nTu me dis : « Attends, tu verras, ça vient. »\nEt toujours tu avais raison, mon amour :\nUn plateau n’est qu’un pas avant le prochain."],
+["Le record perso","Nouveau record, je le dis tout haut :\nTu es mon meilleur PR, mon plus beau.\nPas besoin de chrono, pas de compétition,\nJuste toi, la plus belle des progressions."],
+["La ceinture","Elle tient mon dos quand la charge est lourde ;\nToi, tu tiens mon cœur quand le monde est sourd.\nOn a tous besoin de quelque chose qui soutient :\nToi, c’est ma force, ma ceinture, mon lien."],
+["Le jour de repos","Les muscles se construisent quand on dort, quand on respire ;\nAujourd’hui, rien à prouver, rien à dire.\nJuste ton épaule, un film, un thé bien chaud :\nLe repos près de toi, c’est mon plus beau cadeau."],
+["Les courbatures","Le lendemain, tout fait mal, tout tire ;\nMais cette douleur-là, c’est de la joie qui s’étire.\nNos deux ans m’ont laissé des traces :\nDes fous rires aux joues, que rien n’efface."],
+["Le coach","Tu m’encourages quand je veux tout lâcher,\nTu cries « Encore une ! » sans jamais te fâcher.\nSans toi, je n’oserais pas viser plus haut :\nTu es mon coach, mon cœur et mon meilleur duo."],
+["Le podium","Sur le podium, trois places à prendre ;\nMoi, je n’en veux qu’une : la tienne, pour t’attendre.\nPeu importe la médaille, l’or ou le bronze :\nMon trophée, c’est ta main qui me répond."],
+["La technique","Un bon mouvement, c’est surtout de la patience :\nLe dos droit, le souffle, la confiance.\nNotre amour s’est construit pas à pas,\nSans forcer, sans casser : juste toi et moi."],
+["Le miroir","Au miroir de la salle, je vérifie mon dos ;\nMais le plus beau reflet, c’est ton sourire, ton mot.\nAvec toi, je me vois enfin tel que je suis :\nUn peu meilleur, un peu plus fort, plus ravi."],
+["Le souffle","Inspire, bloque, pousse, expire :\nQuatre temps, et il y a tant à dire.\nMon souffle à moi, depuis deux ans,\nSe coupe encore quand tu entres, simplement."],
+["La surcharge progressive","On ajoute un peu de poids chaque semaine ;\nC’est ça, la progression, la belle, la saine.\nNotre amour a pris le même chemin :\nUn peu plus grand à chaque lendemain."],
+["L’équilibre","Pour que la barre monte, les disques doivent s’équilibrer ;\nUn peu à gauche, un peu à droite, pour ne pas basculer.\nToi et moi, c’est exactement ça :\nDeux côtés différents, une seule barre, un seul pas."],
+["Le sac de sport","Mon sac est prêt : chaussures, ceinture, magnésie ;\nEt dedans, bien caché, un morceau de toi, ma vie.\nTu es dans mes séries, dans mes pauses, dans mes pas :\nMême au milieu des fers, je suis où tu es, là."],
+["La série","Trois séries de dix, un souffle, un cri ;\nÀ chaque répétition, je te redis : ici.\nIci, avec toi, c’est là que je veux rester,\nSérie après série, sans jamais arrêter."],
+["Le dernier essai","Dernier essai : la salle retient son souffle.\nToi, tu souris, et je gagne sans effort.\nSi l’amour était un sport olympique,\nOn serait champions du monde, toi et moi, c’est sûr."],
+["Noël à la salle","Ce soir, rien à soulever que nos verres,\nEt le plus beau des poids : ton bras dans mon bras.\nJoyeux Noël, mon amour de fonte et de lumière :\nLe plus beau des cadeaux, c’est que tu sois là."],
+["Veille de record","Demain, le grand jour, la dernière charge ;\nMais je suis prêt, car tu es là, si large,\nComme un horizon qui m’ouvre les bras,\nEt je sais que je ne tomberai pas."],
+["Nos 2 ans","Deux ans : notre plus belle barre, bien chargée,\nDe rires, de voyages, de matins à t’embrasser.\nJe ne cherche pas de record, juste à continuer :\nJoyeux anniversaire, mon amour. À nous, le prochain palier."]
+];
+var O=[0,14,3,20,8,17,1,22,11,5,19,9,23,2,16,7,13,21,4,18,10,15,6,12,24,25,26];P=O.map(function(k){return P[k]});
+var g=document.getElementById("grid"),d=document.getElementById("dlg"),opened={};
+try{opened=JSON.parse(localStorage.getItem("avent-halt-v2")||"{}")}catch(e){}
+var now=new Date(),dec=now.getMonth()===11;
+function locked(i){return !(now.getFullYear()===2026&&now.getMonth()===11&&now.getDate()===i+1)}
+var B=[];function upd(){var c=0,k=0;for(var j in opened){c++;k+=[25,20,15,10,5][j%5]}document.getElementById("cnt").textContent=c;document.getElementById("kg").textContent=k}
+P.forEach(function(p,i){
+ var b=document.createElement("button");
+ b.className="plate c"+((i%5)+1)+(opened[i]?" done":"");
+ b.innerHTML="<span>"+(i+1)+"</span><small>"+(i%5===0?"25 kg":i%5===1?"20 kg":i%5===2?"15 kg":i%5===3?"10 kg":"5 kg")+"</small>";
+ b.setAttribute("aria-label","Charge "+(i+1)+(locked(i)?", verrouillée":""));
+ if(locked(i)&&!opened[i])b.setAttribute("aria-disabled","true");
+ b.onclick=function(){
+  if(locked(i)&&!opened[i]){var M=["Essai nul : la barre n’est pas encore prête. Reviens le ","Drapeau rouge du jury ! Un peu de patience, ton essai est le ","Trop tôt pour l’essai : attends le signal de l’arbitre, le ","Pas si vite, championne : ton passage est programmé le "],late=now.getFullYear()===2026&&now.getMonth()===11&&now.getDate()>i+1;document.getElementById("n").textContent="Charge "+(i+1)+" sur 27";document.getElementById("t").textContent=late?"Essai manqué":"Essai refusé";document.getElementById("p").textContent=late?"Cette charge était prévue le "+(i+1)+" décembre.":M[Math.floor(Math.random()*M.length)]+(i+1)+" décembre.";d.showModal();return}
+  document.getElementById("n").textContent="Charge "+(i+1)+" sur 27";
+  document.getElementById("t").textContent=p[0];
+  document.getElementById("p").textContent=p[1];
+  d.showModal();
+  b.classList.add("done");opened[i]=1;upd();
+  try{localStorage.setItem("avent-halt-v2",JSON.stringify(opened))}catch(e){}
+ };
+ B[i]=b;
+});
+[12,4,21,0,17,8,25,2,14,23,6,19,10,1,26,15,9,22,5,18,3,13,24,7,20,11,16].forEach(function(k){g.appendChild(B[k])});
+upd();
+document.getElementById("close").onclick=function(){d.close()};
+d.addEventListener("click",function(e){if(e.target===d)d.close()});
+</script>
+</body>
+</html>
